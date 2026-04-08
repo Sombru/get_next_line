@@ -32,7 +32,7 @@ char	*ft_strchr(const char *s, int c)
 
 
 // function combines strings s1 and s2 and allocates memory for the result
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new;
 	size_t	len1;
@@ -45,6 +45,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(new, s1, len1 + 1);
 	ft_strlcat(new, s2, len1 + len2 + 1);
+	free(s1);
+	free(s2);
 	return (new);
 }
 
@@ -75,6 +77,8 @@ size_t	ft_strlen(const char *str)
 	int	count;
 
 	count = 0;
+	if (!str)
+		return 0;
 	while (*str != '\0')
 	{
 		count++;
