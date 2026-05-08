@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pkostura <pkostura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/22 12:05:25 by pasha             #+#    #+#             */
-/*   Updated: 2026/05/08 14:03:53 by pkostura         ###   ########.fr       */
+/*   Created: 2026/05/08 14:24:42 by pkostura          #+#    #+#             */
+/*   Updated: 2026/05/08 14:24:43 by pkostura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-// The strchr() function returns a pointer to 
-// the first occurrence of the character c in the string s.
 char	*ft_strchr(const char *s, int c)
 {
 	char	*ptr;
@@ -30,7 +28,6 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-// function combines strings s1 and s2 and allocates memory for the result
 char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new;
@@ -49,7 +46,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (new);
 }
 
-// function copies string src to dst and ensures that dst is null-terminated
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	unsigned int	i;
@@ -70,7 +66,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (j);
 }
 
-// function counts characters in string str
 size_t	ft_strlen(const char *str)
 {
 	int	count;
@@ -86,7 +81,6 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-// function appends the string src to the end of dest
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	unsigned int	dest_len;

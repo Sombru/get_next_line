@@ -58,7 +58,7 @@ This tradeoff is acceptable for the project constraints because persistent buffe
 ## Instructions
 ### Compilation (mandatory files)
 From the project root:
-
+(uncoment main in gnl root file)
 ```bash
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c -o gnl
 ```
@@ -73,7 +73,7 @@ gcc -Wall -Wextra -Werror -D BUFFER_SIZE=1 main.c get_next_line.c get_next_line_
 Read from a file:
 
 ```bash
-./gnl get_next_line.c
+./gnl file.txt
 ```
 
 Read from standard input:

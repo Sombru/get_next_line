@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pkostura <pkostura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/22 11:33:52 by pasha             #+#    #+#             */
-/*   Updated: 2026/05/08 14:13:29 by pkostura         ###   ########.fr       */
+/*   Created: 2026/05/08 14:20:00 by pasha             #+#    #+#             */
+/*   Updated: 2026/05/08 14:24:14 by pkostura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*extract_line(char *static_buffer)
 {
@@ -18,9 +18,9 @@ static char	*extract_line(char *static_buffer)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
 	if (!static_buffer || !static_buffer[0])
 		return (NULL);
+	i = 0;
 	while (static_buffer[i] && static_buffer[i] != '\n')
 		i++;
 	if (static_buffer[i] == '\n')
@@ -81,9 +81,9 @@ static char	*read_file(int fd, char *static_buffer)
 		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (free(read_buffer), free(static_buffer), NULL);
+		read_buffer[bytes_read] = '\0';
 		if (bytes_read == 0)
 			return (free(read_buffer), static_buffer);
-		read_buffer[bytes_read] = '\0';
 		if (!static_buffer)
 			static_buffer = read_buffer;
 		else
@@ -96,26 +96,26 @@ static char	*read_file(int fd, char *static_buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*static_buffer;
+	static char	*static_buffer[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	static_buffer = read_file(fd, static_buffer);
-	if (!static_buffer || !static_buffer[0])
+	static_buffer[fd] = read_file(fd, static_buffer[fd]);
+	if (!static_buffer[fd] || !static_buffer[fd][0])
 	{
-		free(static_buffer);
-		static_buffer = NULL;
+		free(static_buffer[fd]);
+		static_buffer[fd] = NULL;
 		return (NULL);
 	}
-	line = extract_line(static_buffer);
+	line = extract_line(static_buffer[fd]);
 	if (!line)
 	{
-		free(static_buffer);
-		static_buffer = NULL;
+		free(static_buffer[fd]);
+		static_buffer[fd] = NULL;
 		return (NULL);
 	}
-	static_buffer = remove_line(static_buffer);
+	static_buffer[fd] = remove_line(static_buffer[fd]);
 	return (line);
 }
 
