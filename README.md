@@ -60,13 +60,13 @@ This tradeoff is acceptable for the project constraints because persistent buffe
 From the project root:
 (uncoment main in gnl root file)
 ```bash
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c -o gnl
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c -o gnl
 ```
 
 You can change `BUFFER_SIZE`:
 
 ```bash
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=1 main.c get_next_line.c get_next_line_utils.c -o gnl_bs1
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=1 get_next_line.c get_next_line_utils.c -o gnl_bs1
 ```
 
 ### Execution
